@@ -23,6 +23,7 @@ function consoleRec (sours1,a1){
         a1++
         consoleRec(sours1,a1)
     }
+    return
  }
 consoleRec(sours,0);
 
