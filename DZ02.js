@@ -22,33 +22,28 @@ console.log(isAllTrue(noNumbers, isNumber)); //вернет false
 */
 
 let allNumbers = [1, 2, 4, 5, 6, 7, 8],
-someNumbers = [1, 2, 'привет', 4, 5, 'loftschool', 6, 7, 8],
-noNumbers = ['это', 'массив', 'без', 'чисел'],
-bled = [1];
+  someNumbers = [1, 2, "привет", 4, 5, "loftschool", 6, 7, 8],
+  noNumbers = ["это", "массив", "без", "чисел"],
+  bled = [1];
 
-
-
-   function filterFn(source){
-    let popa = true
-    for (i = 0; i < source.length; i++){
-        if (typeof  source[i] !== 'number'){
-        popa = false
-    }  
+const filterFn = (source) => {
+  for (i = 0; i < source.length; i++) {
+    if (typeof source[i] !== "number") {
+      return false;
     }
-return popa
-}
+  }
+  return true;
+};
 
-function isAllTrue(source){
-  if(source.length === 0) {
-   throw new Error ('Массив пустой')
+const isAllTrue = (source) => {
+  if (source.length === 0) {
+    throw new Error("Массив пустой");
   } else {
-  return  filterFn(source)
-}
-}
+    return filterFn(source);
+  }
+};
 
-
-
-console.log(isAllTrue(allNumbers))
-console.log(isAllTrue(someNumbers))
-console.log(isAllTrue(noNumbers))
-console.log(isAllTrue(bled))
+console.log(isAllTrue(allNumbers));
+console.log(isAllTrue(someNumbers));
+console.log(isAllTrue(noNumbers));
+console.log(isAllTrue(bled));
