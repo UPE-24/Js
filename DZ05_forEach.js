@@ -12,3 +12,12 @@ const forEach = (arr, callback) => {
   return good;
 };
 console.log(forEach(arr, (pevoe) => pevoe + pevoe));
+
+/** ver.2 */
+const _forEach = (arr, cb) => {
+  for (let i = 0; i < arr.length; i++) {
+    cb(arr[i]);
+  }
+}
+
+forEach(['что', 'здесь', 'происходит'], (i) => console.log('i',i))
