@@ -20,16 +20,17 @@ const filter = (array, callback) => {
   return element;
 };
 //передем 2 аргумета, popa массив и функцию фильтрации маасива
-console.log(filter(popa, (pervoe) => pervoe > 3));
+// console.log(filter(popa, (pervoe) => pervoe > 3));
 
 /** ver.2 */
 const _filter = (arr, cb) => {
   if (!arr.length) return [];
 
-  let result = [];
+  const result = [];
 
   for (let i = 0; i < arr.length; i++) {
     if (cb(arr[i])) {
+      // result.push(arr[i]);
       result[result.length] = arr[i];
     }
   }
