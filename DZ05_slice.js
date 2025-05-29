@@ -1,6 +1,15 @@
 //Метод slice
-const popa = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const slice = (arr, a, b) => {
+/**
+ * Array.slice принимает два необязательных аргумента:
+
+   - индекс начала, позиция элемента, начиная с которого будут копироваться элементы;
+   - индекс конца, позиция элемента следующего за последним копируемым элементом в исходном массиве.
+ */
+const slice = (
+  arr, 
+  a, // a = 0 можно параметры по-умолчанию сразу делать
+  b // b = arr.length;
+) => {
   const callback = [];
 
   // Определяем отрицательное ли значение a
@@ -27,10 +36,15 @@ const slice = (arr, a, b) => {
 
   return callback;
 };
-console.log(slice(popa, 0, 3));
-console.log(slice(popa, 3));
-console.log(slice(popa, -3));
-console.log(slice(popa, -3, -1));
+
+const popa = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+console.log('без аргументов:', slice(popa));
+console.log('скопировать 3 элемента от начала:',slice(popa, 0, 3));
+console.log('скопировать с 3 элемента:',slice(popa, 3));
+console.log('скопировать 3 последних:',slice(popa, -3));
+console.log('скопировать 3, 2 элементы с конца:',slice(popa, -3, -2));
+console.log('индекс начала больше или равен длине массива:',slice(popa, 100)); // не работает
 
 // Эт решение я подсмотрел когда захотел сократить свой код (За одно повторил азы), нуу епт читается очень больно работать с if приятнее
 const slice2 = (arr, a, b) => {
@@ -50,7 +64,7 @@ const slice2 = (arr, a, b) => {
   }
   return callback2;
 };
-console.log(slice2(popa, 0, 3));
-console.log(slice2(popa, 3));
-console.log(slice2(popa, -3));
-console.log(slice2(popa, -3, -1));
+// console.log(slice2(popa, 0, 3));
+// console.log(slice2(popa, 3));
+// console.log(slice2(popa, -3));
+// console.log(slice2(popa, -3, -1));
