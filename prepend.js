@@ -1,6 +1,9 @@
-// container элемент в котрый будет всавляться newElement
-// newElement элемент в котрый будет всавляться в начало
-export function prepend(container, newElement) {
+/**
+ * 
+ * @param {Element} container - что вставлять
+ * @param {Element} newElement - куда вставлять
+ */
+function prepend(container, newElement) {
   // container.firstChild возвращает первый  элемент внутри container
   // проверяем если там элементы
   if (container.firstChild) {
@@ -12,3 +15,4 @@ export function prepend(container, newElement) {
     container.appendChild(newElement);
   }
 }
+
