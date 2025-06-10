@@ -21,3 +21,5 @@ const _forEach = (arr, cb) => {
 };
 
 forEach(["что", "здесь", "происходит"], (i) => console.log("i", i));
+
+console.log(arr.slice(4));
