@@ -13,7 +13,7 @@ var objA = {
   prop6: new Date(2016, 2, 10),
 };
 var objB = {
-  prop5: 1000,
+  prop5: 6,
   prop3: "value3",
   prop1: "value1",
   prop2: "value2",
@@ -45,6 +45,18 @@ const deepEqual = (obj1, obj2) => {
       if (!deepEqual(obj1[i], obj2[i])) return false;
     }
     return true;
+  }
+  // Исправления баги !!!
+  //Крч тут проверка что оба — объекты и не null, тип у меня вся сверка была на то что,
+  //  я сравниваю обьеты а когда у меня попадались не обьеукты, мой код дальше думал что эт обьеты
+  if (
+    // тут у меня тоже была бага ибо оказываеттся null нужно отдельно проверять
+    typeof obj1 !== "object" ||
+    typeof obj2 !== "object" ||
+    obj1 === null ||
+    obj2 === null
+  ) {
+    return false;
   }
 
   // В начле нужно проврить ключи (Object.keys) очень удобно
