@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Моя страница</title>
+  </head>
+  <body>
+    <h1>Привет, мир!</h1>
+    <p>Старый элемент</p>
+    <div class="c1">123</div>
+    <div class="c1">674</div>
+    <div id="c2">900</div>
+
+    <script type="module">
+      import deleteTextNodes from "./deleteTextNodes.js";
+
+      // Делаем функцию доступной в консоли
+      window.deleteTextNodes = deleteTextNodes;
+
+      // Автоматическое выполнение при загрузке
+      document.addEventListener("DOMContentLoaded", () => {
+        deleteTextNodes(document.querySelectorAll("div"));
+      });
+    </script>
+  </body>
+</html>
