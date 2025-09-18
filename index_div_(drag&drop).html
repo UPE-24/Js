@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Создание div</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 50px;
+            background-color: lightblue;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid darkblue;
+            border-radius: 5px;
+        }
+        .box:active {
+            cursor: grabbing;
+        }
+    </style>
+  </head>
+  <body>
+    <button id="createButton">Создать новый div</button>
+ <div id="container">
+ </div>
+
+ <script>
+        // Находим кнопку по ID
+        const button = document.getElementById('createButton');
+        
+        // Находим контейнер 
+        const container = document.getElementById('container');
+        
+        // Счетчик для нумерации div
+        let counter = 1;
+          // Переменные для перетаскивания
+        let isDragging = false;
+        let currentBox = null;
+        let offsetX, offsetY;
+        // рандомоим значения
+         function getRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        // Функция начала перетаскивания
+        function startDrag(e) {
+            isDragging = true;
+            currentBox = this;
+             // Вычисляем смещение курсора относительно угла элемента
+            const rect = currentBox.getBoundingClientRect();
+            offsetX = e.clientX - rect.left;
+            offsetY = e.clientY - rect.top;
+            
+            // Добавляем класс для визуального эффекта
+            currentBox.classList.add('dragging');
+            
+            // Поднимаем элемент выше остальных
+            currentBox.style.zIndex = '1000';
+            
+            e.preventDefault();
+        }
+           // Функция перетаскивания
+        function drag(e) {
+            if (!isDragging) return;
+            
+            // Устанавливаем новую позицию элемента
+            currentBox.style.position = 'absolute';
+            currentBox.style.left = (e.clientX - offsetX) + 'px';
+            currentBox.style.top = (e.clientY - offsetY) + 'px';
+        }
+        
+        // Функция окончания перетаскивания
+        function stopDrag() {
+            if (!isDragging) return;
+            
+            isDragging = false;
+            currentBox.classList.remove('dragging');
+            currentBox.style.zIndex = '1';
+            currentBox = null;
+        }
+        
+        // Добавляем обработчики событий для перетаскивания
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('mouseup', stopDrag);
+        
+        // Добавляем обработчик события на клик по кнопке
+        button.addEventListener('click', function() {
+          const randomWidth = getRandomNumber(50, 300); // от 50px до 300px
+            const randomHeight = getRandomNumber(30, 200); // от 30px до 200px
+            // 1. Создаем новый div элемент
+            const newDiv = document.createElement('div');
+            
+            // 2. Добавляем класс для стилизации
+            newDiv.classList.add('box');
+            // 3.Устанавливаем случайные размеры
+            newDiv.style.width = randomWidth + 'px';
+            newDiv.style.height = randomHeight + 'px';
+            
+            // 4. Добавляем содержимое в div
+            newDiv.textContent = 'Новый блок #' + counter;
+            
+            // 5. Добавляем содержимое в div
+            newDiv.textContent = 'Блок #' + counter + ' (' + randomWidth + 'x' + randomHeight + ')';
+
+            // 6. Добавляем обработчик начала перетаскивания
+            newDiv.addEventListener('mousedown', startDrag);
+            
+            // 7. Добавляем div в контейне
+            container.appendChild(newDiv);
+            
+            // 8. Увеличиваем счетчик
+            counter++;
+            
+            console.log('Создан новый div!');
+        });
+
+    </script>
+ </body>
+</html>
